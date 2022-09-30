@@ -1,0 +1,84 @@
+<?php
+    
+    /*
+     * 20211104
+     * Recuerda, al crear un proyecto hay que especificar la carpeta
+     * donde se hace y crear el nombre de la ubicacion
+     *
+     * LINUX
+     * file:///var/www/html/004_MiPaginaWeb/cookie.php
+     * http://localhost/004_MiPaginaWeb/cookie.php
+     *
+     * WINDOWS
+     * F:\Xampp\htdocs\workspace-php\004_MiPaginaWeb
+     * http://localhost/workspace-php/004_MiPaginaWeb/cookie.php
+     *
+     */
+
+    // Start session
+    session_start();
+    require_once 'connect.php';
+    
+    // echo $_SESSION['idusuario'];
+    if(empty($_SESSION['idusuario'])){
+        header("location: login.php");
+        echo "No hay sesion";
+        //exit();
+    }
+    
+    else{
+        echo "Si hay sesion";
+        
+        //establezco la cookie
+        $cookie_name = "usuario"; // mismo nombre que antes
+        $coookieCounter = "contador " . $_SESSION['idusuario'];
+        
+        if(!isset($_COOKIE[$cookie_name])) {
+            echo "La cookie '" . $cookie_name . "' no se ha guardado!<br>";
+        } else {
+            echo "La Cookie '" . $cookie_name . "' se ha guardado!<br>";
+            echo "Su valor es: " . $_COOKIE[$cookie_name] . "<br>";
+        }
+        
+        
+        
+        if(!isset($_COOKIE[$cookieCounter])) {
+            echo "El '" . $cookieCounter . "' no se ha guardado!<br>";
+        } else {
+            echo "La Cookie '" . $cookieCounter . "' se ha guardado!<br>";
+            echo "Su valor es: " . $_COOKIE[$cookieCounter] . "<br>";
+        }
+        
+        
+        
+        // Echo session variables that were set on previous page
+        /*
+         echo "Favorite color is " . $_SESSION["favcolor"] . ".<br>";
+         echo "Favorite animal is " . $_SESSION["favanimal"] . ".";
+         */
+        
+    }
+    
+    
+
+    
+    
+?>
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Revision de cookies y sesion</title>
+        <style>
+            .error{
+            color: red;
+        </style>
+    </head>
+    <body>
+
+		<p>Volver a welcome <a href="welcome.php">aqui</a></p>
+    
+    </body>
+</html>
